@@ -8,6 +8,11 @@ import com.jonas.util.ListUtil;
  */
 public class ReverseList {
 
+    /**
+     * 对于递归算法，最重要的就是明确递归函数的定义。具体来说，我们的reverse函数定义是这样的：
+     *
+     * 输入一个节点head，将「以head为起点」的链表反转，并返回反转之后的头结点。
+     */
     public static ListNode reverse(ListNode head) {
         //base case : 链表只有一个节点的时候反转也是它自己，直接返回即可
         if (null == head.next) {
