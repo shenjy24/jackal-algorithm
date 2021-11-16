@@ -10,7 +10,7 @@ public class ReverseNList {
 
     private static ListNode successor = null;
 
-    //反转以 head 为起点的 n 个节点，返回新的头结点
+    //反转以 head 为起点的 n 个节点，返回新的头结点，索引从1开始
     public static ListNode reverseN(ListNode head, int n) {
         //base case : 反转一个元素，就是它本身，同时要记录后驱节点。
         if (1 == n) {
