@@ -9,6 +9,7 @@ package com.jonas.util;
  */
 public class TreeUtil {
 
+    //创建测试用的二叉树
     public static TreeNode buildTree() {
         TreeNode head = new TreeNode(100);
         TreeNode node1 = new TreeNode(1);
