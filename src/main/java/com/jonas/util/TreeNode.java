@@ -1,6 +1,5 @@
 package com.jonas.util;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
