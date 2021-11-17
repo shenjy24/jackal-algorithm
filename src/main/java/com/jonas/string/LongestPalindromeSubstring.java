@@ -11,7 +11,7 @@ package com.jonas.string;
  *   输入："cbbd"
  *   输出："bb"
  */
-public class LongestPalindrome {
+public class LongestPalindromeSubstring {
 
     public static void main(String[] args) {
         String str = longestPalindrome("babad");
