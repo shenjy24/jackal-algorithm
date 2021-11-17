@@ -6,6 +6,8 @@ package com.jonas.string;
  * 输入: str1 = "abcde", str2 = "ace"
  * 输出: 3
  * 解释: 最长公共子序列是 "ace"，它的长度是 3
+ *
+ * 问题详解：https://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484486&idx=1&sn=0bdcb94c6390307ea32427757ec0072c&source=41#wechat_redirect
  */
 public class LongestCommonSubsequence {
 
