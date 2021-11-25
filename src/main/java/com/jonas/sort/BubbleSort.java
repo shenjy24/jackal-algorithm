@@ -12,8 +12,8 @@ import com.jonas.util.ArrayUtil;
 public class BubbleSort {
 
     public static void sort(int[] a) {
-        for (int i = 0; i < a.length; i++) {
-            for (int j = 0; j < a.length - i - 1; j++) {
+        for (int i = 0; i < a.length; i++) {  //外层循环控制排序趟数
+            for (int j = 0; j < a.length - i - 1; j++) { //内层循环控制每一趟排序多少次
                 if (a[j] > a[j + 1]) {
                     int tmp = a[j];
                     a[j] = a[j + 1];
