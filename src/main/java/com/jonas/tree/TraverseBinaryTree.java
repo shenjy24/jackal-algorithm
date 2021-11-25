@@ -12,35 +12,58 @@ import com.jonas.util.TreeUtil;
  */
 public class TraverseBinaryTree {
 
-    // 全局变量，记录递归函数的递归层数
-    private static int count = 0;
-
-    // 输入 n，打印 n 个 tab 缩进
-    public static void printIndent(int n) {
-        for (int i = 0; i < n; i++) {
-            System.out.printf("*");
-        }
-    }
-
-    public static void traverse(TreeNode node) {
-        printIndent(count++);
-        System.out.printf("val = %s\n", null != node ? node.val : "null");
-
+    /**
+     * 前序遍历
+     *
+     * @param node 头节点
+     */
+    public static void preOrderTraverse(TreeNode node) {
         if (null == node) {
-            printIndent(--count);
-            System.out.printf("return\n");
             return;
         }
 
-        traverse(node.left);
-        traverse(node.right);
+        System.out.println(node.val);
+        preOrderTraverse(node.left);
+        preOrderTraverse(node.right);
+    }
 
-        printIndent(--count);
-        System.out.printf("return\n");
+    /**
+     * 中序遍历
+     *
+     * @param node 头节点
+     */
+    public static void inOrderTraverse(TreeNode node) {
+        if (null == node) {
+            return;
+        }
+
+        inOrderTraverse(node.left);
+        System.out.println(node.val);
+        inOrderTraverse(node.right);
+    }
+
+    /**
+     * 后序遍历
+     *
+     * @param node 头节点
+     */
+    public static void postOrderTraverse(TreeNode node) {
+        if (null == node) {
+            return;
+        }
+
+        postOrderTraverse(node.left);
+        postOrderTraverse(node.right);
+        System.out.println(node.val);
     }
 
     public static void main(String[] args) {
         TreeNode head = TreeUtil.buildTree();
-        traverse(head);
+        preOrderTraverse(head);
+        System.out.println();
+        inOrderTraverse(head);
+        System.out.println();
+        postOrderTraverse(head);
+        System.out.println();
     }
 }
