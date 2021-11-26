@@ -1,5 +1,7 @@
 package com.jonas.sort;
 
+import com.jonas.util.ArrayUtil;
+
 /**
  * 选择排序
  *
@@ -11,12 +13,23 @@ public class SelectionSort {
 
     public static void sort(int[] a) {
         for (int i = 0; i < a.length; i++) {
-            int min = a[i];
+            int min = i;  //最小元素的下标
             for (int j = i; j < a.length; j++) {
-                if (a[j] < min) {
-                    min = a[j];
+                if (a[j] < a[min]) {
+                    min = j;
                 }
             }
+            //交换
+            int tmp = a[i];
+            a[i] = a[min];
+            a[min] = tmp;
         }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = ArrayUtil.buildArray(10);
+        ArrayUtil.printArray(nums);
+        sort(nums);
+        ArrayUtil.printArray(nums);
     }
 }
