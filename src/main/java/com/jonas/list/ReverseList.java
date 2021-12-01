@@ -24,10 +24,30 @@ public class ReverseList {
         return last;
     }
 
+    /**
+     * 使用迭代方式进行反转
+     */
+    public static ListNode reverseByIteration(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head, nxt;
+        while (null != cur) {
+            nxt = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = nxt;
+        }
+        return pre;
+    }
+
     public static void main(String[] args) {
         ListNode head = ListUtil.buildList();
         ListUtil.printList(head);
         ListNode newHead = reverse(head);
         ListUtil.printList(newHead);
+
+        ListNode headByIteration = ListUtil.buildList();
+        ListUtil.printList(headByIteration);
+        ListNode newHeadByIteration = reverseByIteration(headByIteration);
+        ListUtil.printList(newHeadByIteration);
     }
 }
