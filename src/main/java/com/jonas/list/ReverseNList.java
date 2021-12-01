@@ -24,10 +24,44 @@ public class ReverseNList {
         return last;
     }
 
+    //使用迭代方式反转
+    public static ListNode reverseNByIteration(ListNode head, int n) {
+        if (null == head) {
+            return null;
+        }
+        if (null == head.next) {
+            return head;
+        }
+
+        //获得新头结点和后继结点
+        ListNode last = head;
+        while (n-- > 1) {
+            last = last.next;
+        }
+        ListNode successor = last.next;
+
+        //反转部分链表
+        ListNode pre = null;
+        ListNode cur = head, nxt;
+        while (successor != cur) {
+            nxt = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = nxt;
+        }
+        head.next = successor;
+        return last;
+    }
+
     public static void main(String[] args) {
         ListNode head = ListUtil.buildList();
         ListUtil.printList(head);
         ListNode newHead = reverseN(head, 2);
         ListUtil.printList(newHead);
+
+        ListNode headByIteration = ListUtil.buildList();
+        ListUtil.printList(headByIteration);
+        ListNode newHeadByIteration = reverseNByIteration(headByIteration, 2);
+        ListUtil.printList(newHeadByIteration);
     }
 }

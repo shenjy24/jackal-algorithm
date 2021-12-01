@@ -28,6 +28,11 @@ public class ReverseList {
      * 使用迭代方式进行反转
      */
     public static ListNode reverseByIteration(ListNode head) {
+        //base case : 链表只有一个节点的时候反转也是它自己，直接返回即可
+        if (null == head.next) {
+            return head;
+        }
+
         ListNode pre = null;
         ListNode cur = head, nxt;
         while (null != cur) {
