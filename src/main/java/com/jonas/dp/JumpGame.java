@@ -28,6 +28,7 @@ public class JumpGame {
     }
 
     //贪心算法1 时间复杂度是O(n)，空间复杂度是O(1)
+    //从前往后推，看最远可到达距离是否大于等于 nums.length - 1
     public boolean canJumpGreedy1(int[] nums) {
         int fastest = 0;    //最远可到达
         for (int i = 0; i < nums.length; i++) {
@@ -39,6 +40,7 @@ public class JumpGame {
     }
 
     //贪心算法2 时间复杂度是O(n)，空间复杂度是O(1)
+    //从后往前推，从后往前判断每个坐标是否可达，如果可以推断到坐标0可达，则整体可达
     public boolean canJumpGreedy2(int[] nums) {
         //坐标代表当前可达的最后节点，这个坐标初始等于nums.length-1
         int lastPosition = nums.length - 1;
