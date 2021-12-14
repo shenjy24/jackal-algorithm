@@ -4,67 +4,47 @@ public class AppTest {
 
     public static void main(String[] args) {
         AppTest app = new AppTest();
-        System.out.println(-Math.pow(2, 31));
-        System.out.println(app.myAtoi("+-12"));
+        System.out.println(app.myAtoi("2.15"));
     }
 
-    public int myAtoi(String s) {
-        if (null == s || 0 == s.length()) {
-            return 0;
-        }
-        s = trimHead(s);
-        if (0 == s.length()) {
-            return 0;
-        }
-
-        boolean position = s.charAt(0) != '-';
-        s = trimSign(s);
-        if (0 == s.length()) {
-            return 0;
-        }
-
-        StringBuilder number = new StringBuilder();
-        for (char ch : s.toCharArray()) {
-            if ('-' == ch || '+' == ch) {
-                continue;
-            }
-            if (' ' == ch || !Character.isDigit(ch)) {
-                break;
-            }
-            number.append(ch);
-        }
-        if (0 == number.length()) {
-            return 0;
-        }
-        long num = position ? Long.parseLong(number.toString()) : -Long.parseLong(number.toString());
-        if (num < -Math.pow(2, 31)) {
-            return (int) -Math.pow(2, 31);
-        }
-        if (num > (Math.pow(2, 31) - 1)) {
-            return (int) (Math.pow(2, 31) - 1);
-        }
-        return (int) num;
-    }
-
-    private String trimHead(String s) {
+    public int myAtoi(String input) {
+        int sign = 1;
+        int result = 0;
         int index = 0;
-        for (char ch : s.toCharArray()) {
-            if (' ' != ch) {
-                break;
-            }
+        int n = input.length();
+
+        // Discard all spaces from the beginning of the input string.
+        while (index < n && input.charAt(index) == ' ') {
             index++;
         }
-        return s.substring(index);
-    }
 
-    private String trimSign(String s) {
-        int index = 0;
-        for (char ch : s.toCharArray()) {
-            if ('-' != ch && '+' != ch) {
-                break;
-            }
+        // sign = +1, if it's positive number, otherwise sign = -1.
+        if (index < n && input.charAt(index) == '+') {
+            sign = 1;
+            index++;
+        } else if (index < n && input.charAt(index) == '-') {
+            sign = -1;
             index++;
         }
-        return s.substring(index);
+
+        // Traverse next digits of input and stop if it is not a digit
+        while (index < n && Character.isDigit(input.charAt(index))) {
+            int digit = input.charAt(index) - '0';
+
+            // Check overflow and underflow conditions.
+            if ((result > Integer.MAX_VALUE / 10) ||
+                    (result == Integer.MAX_VALUE / 10 && digit > Integer.MAX_VALUE % 10)) {
+                // If integer overflowed return 2^31-1, otherwise if underflowed return -2^31.
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+
+            // Append current digit to the result.
+            result = 10 * result + digit;
+            index++;
+        }
+
+        // We have formed a valid number without any overflow/underflow.
+        // Return it after multiplying it with its sign.
+        return sign * result;
     }
 }
