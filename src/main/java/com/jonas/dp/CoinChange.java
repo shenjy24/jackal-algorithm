@@ -1,5 +1,6 @@
 package com.jonas.dp;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class CoinChange {
         int amount = 100;
 //        System.out.println(app.coinChange(coins, amount));
         System.out.println(app.memoCoinChange(coins, amount));
-//        System.out.println(app.dpCoinChange(coins, amount));
+        System.out.println(app.dpCoinChange(coins, amount));
     }
 
     public int coinChange(int[] coins, int amount) {
@@ -59,22 +60,23 @@ public class CoinChange {
         return memo.get(amount);
     }
 
-    //DP表解法
+    /**
+     * DP表解法
+     * dp数组的定义：当目标金额为 i 时，至少需要 dp[i] 枚硬币凑出。
+     */
     public int dpCoinChange(int[] coins, int amount) {
-        Map<Integer, Integer> dp = new HashMap<>();
-        //base case
-        dp.put(0, 0);
-        for (int i = 0; i < (amount + 1); i++) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount + 1);
+        // base case
+        dp[0] = 0;
+        for (int i = 0; i < dp.length; i++) {
             for (int coin : coins) {
-                //子问题无解，跳过
-                if (i < coin || !dp.containsKey(i - coin)) continue;
-                int val = Math.min(dp.getOrDefault(i, Integer.MAX_VALUE), 1 + dp.get(i - coin));
-                dp.put(i, val);
+                if (i - coin < 0) {
+                    continue;
+                }
+                dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
             }
         }
-        if (!dp.containsKey(amount) || dp.get(amount) == Integer.MAX_VALUE) {
-            return -1;
-        }
-        return dp.get(amount);
+        return (dp[amount] == amount + 1) ? -1 : dp[amount];
     }
 }

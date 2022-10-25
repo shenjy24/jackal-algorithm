@@ -3,7 +3,9 @@ package com.jonas.tree;
 import com.jonas.util.TreeNode;
 import com.jonas.util.TreeUtil;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -96,6 +98,39 @@ public class TraverseBinaryTree {
         }
     }
 
+    /**
+     * 层级遍历/广度优先遍历
+     *
+     * @param root 头节点
+     */
+    public static List<TreeNode> getAllNode(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        List<TreeNode> nodes = new ArrayList<>();
+        // 初始化队列，将 root 加入队列
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            nodes.add(cur);
+
+            /* 层级遍历代码位置 */
+            System.out.println(cur.val);
+            /* 层级遍历代码位置 */
+
+            if (null != cur.left) {
+                queue.offer(cur.left);
+            }
+
+            if (null != cur.right) {
+                queue.offer(cur.right);
+            }
+        }
+        return nodes;
+    }
+
     public static void main(String[] args) {
         TreeNode root = TreeUtil.buildTree();
         preOrderTraverse(root);
@@ -105,5 +140,7 @@ public class TraverseBinaryTree {
         postOrderTraverse(root);
         System.out.println();
         levelTraverse(root);
+        List<TreeNode> nodes = getAllNode(root);
+        nodes.forEach(node -> System.out.print(node.val + " "));
     }
 }
