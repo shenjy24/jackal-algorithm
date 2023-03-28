@@ -24,4 +24,19 @@ public class ArrayUtil {
         }
         System.out.println(content);
     }
+
+    public static void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
+    public static void shuffle(int[] a) {
+        int length = a.length;
+        Random rand = new Random();
+        for (int i = length; i > 0; i--) {
+            int randInd = rand.nextInt(i);
+            swap(a, randInd, i - 1);
+        }
+    }
 }

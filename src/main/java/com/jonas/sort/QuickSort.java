@@ -35,7 +35,7 @@ public class QuickSort {
         sort(a, j + 1, end);    //将右半部分a[j+1...end]排序
     }
 
-    private static int partition(int[] a, int start, int end) {
+    public static int partition(int[] a, int start, int end) {
         int v = a[start];
         // 关于区间的边界控制需格外小心，稍有不慎就会出错
         // 我这里把 i, j 定义为开区间，同时定义：
