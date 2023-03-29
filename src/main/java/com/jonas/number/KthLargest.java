@@ -5,8 +5,6 @@ import com.jonas.util.ArrayUtil;
 
 import java.util.PriorityQueue;
 
-import static com.jonas.sort.QuickSort.partition;
-
 /**
  * 数组中的第 K 个最大元素
  */
