@@ -1,5 +1,7 @@
 package com.jonas.util;
 
+import org.apache.commons.lang3.RandomUtils;
+
 public class ListUtil {
 
     public static ListNode buildList() {
@@ -15,6 +17,16 @@ public class ListUtil {
         node4.next = node5;
 
         return node1;
+    }
+
+    public static ListNode buildRandomList(int s) {
+        ListNode p = new ListNode(RandomUtils.nextInt(0, 100));
+        ListNode head = p;
+        for (int i = 0; i < s - 1; i++) {
+            p.next = new ListNode(RandomUtils.nextInt(0, 100));
+            p = p.next;
+        }
+        return head;
     }
 
     public static void printList(ListNode head) {
@@ -33,7 +45,7 @@ public class ListUtil {
     }
 
     public static void main(String[] args) {
-        ListNode head = buildList();
+        ListNode head = buildRandomList(5);
         printList(head);
     }
 }
