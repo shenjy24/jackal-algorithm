@@ -48,6 +48,11 @@ public class DetectCircle {
         return len;
     }
 
+    /**
+     * 第一次相遇时，slow走的长度 S = LenA + x;
+     * 第一次相遇时，fast走的长度 2S = LenA + n*R + x;
+     * 所以可以知道，LenA + x =  n*R;　　LenA = n*R -x;
+     */
     public static ListNode circleStart(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
