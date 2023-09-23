@@ -21,15 +21,17 @@ public class NonOverlapIntervals {
             return 0;
         }
 
-        // 按照end排序
-        Arrays.sort(intervals, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] a, int[] b) {
-                long n = (long)a[1] - (long)b[1];
-                return (int) n;
+        // 按照end排序，注意int溢出问题
+        Arrays.sort(intervals, (a, b) -> {
+            if (a[1] > b[1]) {
+                return 1;
+            } else if (a[1] < b[1]) {
+                return -1;
+            } else {
+                return 0;
             }
         });
-        // 不相见区间数量至少为1
+        // 不相交区间数量至少为1
         int count = 1;
         int xEnd = intervals[0][1];
         for (int[] interval : intervals) {
@@ -47,11 +49,10 @@ public class NonOverlapIntervals {
         Arrays.sort(intervals, new Comparator<int[]>() {
             @Override
             public int compare(int[] a, int[] b) {
-                long n = (long)a[1] - (long)b[1];
-                if (n < 0) {
-                    return -1;
-                } else if (n > 0) {
+                if (a[1] > b[1]) {
                     return 1;
+                } else if (a[1] < b[1]) {
+                    return -1;
                 } else {
                     return 0;
                 }
